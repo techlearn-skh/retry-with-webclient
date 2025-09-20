@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: retry-producer-service
+
+server:
+  port: 9001

@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: retry-consumer-service
+
+server:
+  port: 9000
