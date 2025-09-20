@@ -1,6 +1,4 @@
-package com.skh.controllers;
-
-import com.fasterxml.jackson.databind.JsonNode;
+package com.skh.exceptions;
 
 public class MyCustomException extends RuntimeException{
     public MyCustomException(String message){

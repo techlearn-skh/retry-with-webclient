@@ -1,10 +1,9 @@
-package com.skh.controllers;
+package com.skh.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.skh.model.Employee;
+import com.skh.exceptions.MyCustomException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.util.retry.Retry;
@@ -12,8 +11,6 @@ import reactor.util.retry.Retry;
 import java.io.FileNotFoundException;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Random;
 
 @Service
 public class ConsumerServiceImpl {

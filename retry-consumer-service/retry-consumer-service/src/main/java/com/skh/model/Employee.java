@@ -1,4 +1,4 @@
-package com.skh.controllers;
+package com.skh.model;
 
 import org.springframework.stereotype.Component;
 
