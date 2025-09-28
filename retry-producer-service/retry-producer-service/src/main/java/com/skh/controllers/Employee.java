@@ -1,6 +1,8 @@
 package com.skh.controllers;
 
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+import reactor.util.annotation.NonNull;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -8,6 +10,7 @@ import java.util.stream.IntStream;
 
 @Component
 public class Employee implements Cloneable {
+
 
 	private Integer empId;
 	private String empName;
@@ -96,12 +99,13 @@ public class Employee implements Cloneable {
 	}
 
 	public List<Employee> fetchAllEmployees() {
-		List<Employee> employeeList = IntStream.range(0, 5)
-				.mapToObj(x -> new Employee((Math.abs(new Random().nextInt() % 100)), UUID.randomUUID().toString().substring(0, 8),
-						(new Random().nextInt() % 2 == 0 ? new Date() : new Date(new Date().getTime() + 86400000)),
-						Math.ceil(new Random().nextDouble() * 100000), (x % 2 == 0 ? true : false)))
+
+		Random random = new Random();
+		return IntStream.range(0, 5)
+				.mapToObj(x -> new Employee((Math.abs(random.nextInt() % 100)), UUID.randomUUID().toString().substring(0, 8),
+						(random.nextInt() % 2 == 0 ? new Date() : new Date(new Date().getTime() + 86400000)),
+						Math.ceil(random.nextDouble() * 100000), ((Math.abs(random.nextInt() % 100)) % 2 == 0)))
 				.collect(Collectors.toList());
-		return employeeList;
 	}
 
 	public void displayEmployee(Employee e) {

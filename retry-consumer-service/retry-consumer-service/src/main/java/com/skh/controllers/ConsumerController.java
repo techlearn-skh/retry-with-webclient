@@ -27,6 +27,12 @@ public class ConsumerController {
         return new ResponseEntity<>(consumerService.fetchEmployee(retryCount), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/check207")
+    public ResponseEntity<Mono<Object>> check207() throws InterruptedException {
+        Thread.sleep(3000);
+        return new ResponseEntity<>(consumerService.check207(), HttpStatus.OK);
+    }
+
    /* @GetMapping(path = "/fetchAllEmployees")*/
     public ResponseEntity<List<Employee>> fetchAllEmployees() {
 
