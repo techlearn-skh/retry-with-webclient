@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.time.LocalTime;
 
 @RestController
@@ -87,9 +89,14 @@ public class WebClientProducerController {
     @RequestPart("file") FilePart file → for Spring WebFlux (spring-boot-starter-webflux).
      */
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> uploadFile(@RequestPart("file") FilePart file) {
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
-            return ResponseEntity.ok(String.format("File uploaded Successfully..!!!!, fileName: %s, time: %s",file.filename(), LocalTime.now()));
+
+            // Save file temporarily (required to create a FileSystemResource)
+            File saveTo = File.createTempFile("upload-", file.getOriginalFilename());
+            file.transferTo(saveTo);
+
+            return ResponseEntity.ok(String.format("File uploaded Successfully..!!!!, fileName: %s, time: %s",file.getName(), LocalTime.now()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Upload failed");
