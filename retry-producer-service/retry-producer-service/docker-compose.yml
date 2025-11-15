@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  retry-producer-anyName:
+    image: retry-producer-img
+    container_name: retry-producer-cntnr-anyName
+    ports:
+      - "9004:9002"
+    environment:
+      # force Spring Boot to write logs to the mounted folder (absolute path inside container)
+#      - LOGGING_FILE_NAME=/u01/applications/logs/app.log
+      - SERVER_PORT=9002
+#     if you enable SERVER_PORT=9002 then please add same value in ports: second values as same like 8th line
+    volumes:
+      # Bind Windows host folder -> container path
+      # Replace the left side with your real Windows path if different.
+      - "C:/Users/Dell/logs:/u01/applications/logs"
+#    restart: unless-stopped
+#    logging:
+#      driver: "json-file"
+#      options:
+#        # rotate container stdout logs to avoid disk fill
+#        max-size: "10m"
+#        max-file: "3"

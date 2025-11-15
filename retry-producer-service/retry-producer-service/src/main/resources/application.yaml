@@ -3,7 +3,10 @@ spring:
     name: retry-producer-service
 
 server:
-  port: 9001
+  port: ${SERVER_PORT:9001}
+
+
+
 
 #management:
 #  endpoints:
@@ -50,3 +53,7 @@ server:
 
   # or to expose all
 #  management.endpoints.web.exposure.include=*
+
+logging:
+  file:
+    name: logs/app.log
