@@ -1,4 +1,18 @@
+# Before working with this project please be ready with docker mySQL container.
+
 spring:
+  datasource: # MYSQL Database Configurations
+    url: jdbc:mysql://localhost:3306/mysql?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: kamal
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update # or create, create-drop, none, validate
+    show-sql: true # set to false in production
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect # Adjust based on your MySQL version
   application:
     name: retry-producer-service
 
