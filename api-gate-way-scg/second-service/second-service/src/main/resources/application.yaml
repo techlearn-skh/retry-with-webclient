@@ -3,3 +3,8 @@ spring:
     name: second-service
 server:
   port: 9002
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8083/eureka

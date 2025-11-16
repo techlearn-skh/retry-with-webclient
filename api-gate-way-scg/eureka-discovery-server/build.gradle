@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.skh'
 version = '0.0.1-SNAPSHOT'
-description = 'second service project for Spring Boot'
+description = 'eureka-discovery-server project for Spring Boot'
 
 java {
 	toolchain {
@@ -14,33 +14,18 @@ java {
 	}
 }
 
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+repositories {
+	mavenCentral()
 }
 
 ext {
 	set('springCloudVersion', "2025.0.0")
 }
 
-
-repositories {
-	mavenCentral()
-}
-
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.projectreactor:reactor-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-
 }
 
 dependencyManagement {
@@ -48,8 +33,6 @@ dependencyManagement {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
 }
-
-
 
 tasks.named('test') {
 	useJUnitPlatform()

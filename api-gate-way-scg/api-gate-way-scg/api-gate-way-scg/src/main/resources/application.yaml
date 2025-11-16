@@ -1,3 +1,8 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8083/eureka
+
 spring:
   application:
     name: api-gate-way-scg
@@ -5,14 +10,15 @@ spring:
     gateway:
       routes:
         - id: first-service
-          uri: http://localhost:9001/
+          uri: lb://FIRST-SERVICE/
           predicates:
             - Path=/fs/**
-        - id: consumerModule
-          uri: http://localhost:9002/
+        - id: second-service
+          uri: lb://SECOND-SERVICE/
           predicates:
             - Path=/ss/**
 server:
   port: 9000
+
 
 
