@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: api-gate-way-scg
+  cloud:
+    gateway:
+      routes:
+        - id: first-service
+          uri: http://localhost:9001/
+          predicates:
+            - Path=/fs/**
+        - id: consumerModule
+          uri: http://localhost:9002/
+          predicates:
+            - Path=/ss/**
+server:
+  port: 9000
+
+
