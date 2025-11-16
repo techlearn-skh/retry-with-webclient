@@ -1,6 +1,8 @@
 # Before working with this project please be ready with docker mySQL container.
 
 spring:
+  profiles:
+    active: ${SPRING_PROFILE:h2}
   datasource: # MYSQL Database Configurations
     url: jdbc:mysql://localhost:3306/mysql?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
