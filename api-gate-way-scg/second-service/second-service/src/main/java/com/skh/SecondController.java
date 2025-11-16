@@ -15,7 +15,7 @@ public class SecondController {
     @GetMapping("/message")
     public String test() {
         String message = String.format("%s method called in %s!!!, time %s",Thread.currentThread().getStackTrace()[1].getMethodName(), this.getClass().getName(), LocalDateTime.now());
-        log.info(message); 
+        log.info(message);   
         return message;
     }
 }
